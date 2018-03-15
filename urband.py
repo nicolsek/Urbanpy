@@ -22,11 +22,9 @@ def getWord():
 
     return word
 
-def reqAPI(word):
-    global resp
+def parseResp():
     resp = requests.get(reqLink + word)
-
-def parseResp(resp):
+    
     sizeOfDefs = len(resp.json()['list'])
    
     if (sizeOfDefs < 1):
@@ -54,8 +52,6 @@ if __name__ == "__main__":
     word = getWord()
 
     try:
-        reqAPI(word)
+        parseResp()
     except:
-        quit(failedReq) 
-
-    parseResp(resp)
+        quit(failedReq)
